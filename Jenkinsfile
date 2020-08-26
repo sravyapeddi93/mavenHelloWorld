@@ -1,4 +1,5 @@
-stage("checkout"){
+node(){
+  stage("checkout"){
       checkout scm
     }
 
@@ -15,3 +16,4 @@ stage("checkout"){
         junit '*/target/surefire-reports/*.xml'
       }
     }
+}
