@@ -1,6 +1,4 @@
 pipeline{
-
-  stages{
     
    stage("checkout"){
       checkout scm
@@ -19,5 +17,4 @@ pipeline{
         junit '*/target/surefire-reports/*.xml'
       }
     }
-  }
 }
