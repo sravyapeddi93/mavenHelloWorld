@@ -1,22 +1,23 @@
 pipeline{
-checkout scm
 
-stages{
+  stages{
+    
+   stage("checkout"){
+      checkout scm
+    }
 
-stage("Build"){
-steps{
-sh mvn clean compile
-archiveArtifacts artifacts: '**/target/*.jar'
-}
-}
+    stage("Build"){
+      steps{
+        sh "mvn clean compile"
+        archiveArtifacts artifacts: '**/target/*.jar'
+      }
+    }
 
-stage("Test"){
-steps{
-sh mvn run */test/java/AppTest.java
-junit */target/surefire-reports/*.xml
-}
-}
-
-
-}
+    stage("Test"){
+      steps{
+        sh "mvn run */test/java/AppTest.java"
+        junit '*/target/surefire-reports/*.xml'
+      }
+    }
+  }
 }
